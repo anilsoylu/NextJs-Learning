@@ -1,9 +1,9 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
-import React from "react"
 
 function Header() {
   const router = useRouter()
+
   return (
     <div className="p-3 mb-3 border-bottom bg-dark">
       <div className="container d-flex flex-wrap">

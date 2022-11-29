@@ -7,7 +7,9 @@ function product() {
         <title>Product</title>
         <meta name="description" content="bu sayfa ürün sayfasıdır." />
       </Head>
-      <h1>product</h1>
+      <div className="container">
+        <h1>product</h1>
+      </div>
     </>
   )
 }
