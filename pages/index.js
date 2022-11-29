@@ -1,7 +1,7 @@
 import Head from "next/head"
 import styles from "../styles/Home.module.css"
 
-export default function Home({ posts }) {
+export default function Home({ comments }) {
   const number = 3
   return (
     <div className={styles.container}>
@@ -12,13 +12,14 @@ export default function Home({ posts }) {
       </Head>
 
       <h1 className="title">Home</h1>
-      <h2>User List</h2>
+      <h2>Comments List</h2>
 
-      {posts?.map((user) => (
-        <div key={user.id}>
-          {user.id} - {user.name}
-        </div>
-      ))}
+      {!!comments &&
+        comments?.map((comment) => (
+          <div key={comment.id}>
+            {comment.id} - {comment.name}
+          </div>
+        ))}
 
       <style jsx>
         {`
@@ -32,13 +33,13 @@ export default function Home({ posts }) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await fetch("https://jsonplaceholder.typicode.com/comments")
-  const posts = await res.json()
+  const comments = await res.json()
 
   return {
     props: {
-      posts,
+      comments,
     },
   }
 }
