@@ -5,8 +5,6 @@ import { useEffect, useState } from "react"
 function UserItem({ userData }) {
   const router = useRouter()
 
-  console.log(router)
-
   return (
     <div className="container">
       <Head>
@@ -34,15 +32,28 @@ function UserItem({ userData }) {
 
 export default UserItem
 
-// export const getServerSideProps = async (context) => {
-//   const res = await fetch(
-//     `https://jsonplaceholder.typicode.com/users/${context.params.id}`
-//   )
-//   const userData = await res.json()
+export const getStaticProps = async (context) => {
+  const res = await fetch(
+    `https://jsonplaceholder.typicode.com/users/${context.params.id}`
+  )
+  const userData = await res.json()
 
-//   return {
-//     props: {
-//       userData,
-//     },
-//   }
-// }
+  return {
+    props: {
+      userData,
+    },
+  }
+}
+
+export const getStaticPaths = async () => {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/users/`)
+  const users = await res.json()
+
+  const ids = users.map((user) => user.id)
+  const paths = ids.map((id) => ({ params: { id: id.toString() } }))
+
+  return {
+    paths,
+    fallback: false, // can also be true or 'blocking'
+  }
+}
