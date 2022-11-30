@@ -1,6 +1,6 @@
-import Head from "next/head"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import Meta from "../../components/Meta"
 
 function UserItem({ userData }) {
   const router = useRouter()
@@ -8,11 +8,7 @@ function UserItem({ userData }) {
 
   return (
     <div className="container">
-      <Head>
-        <title>{userData?.name}</title>
-        <meta name="description" content={userData?.name} />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Meta title={userData?.name} description={userData?.email} />
 
       <h1>User Item</h1>
 
