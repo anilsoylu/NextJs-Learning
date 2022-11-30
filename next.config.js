@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   images: {
-    domains: ["*.rickandmortyapi.com"],
+    domains: ["images.unsplash.com"],
+    unoptimized: true,
   },
 }
 
