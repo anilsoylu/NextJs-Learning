@@ -3,24 +3,28 @@ import React from "react"
 import Meta from "../../components/Meta"
 var slug = require("slug")
 
-function User({ users }) {
+function Character({ characters }) {
   const router = useRouter()
   const number = 3
 
   return (
     <div className="container">
       <Meta
-        title="Kullanıcılar"
-        description="Burası kullanıcılar sayfasıdır.."
+        title="Rick & Morty"
+        description="Burası Rick & Morty api kullanılan sayfadır.."
       />
-      <h1 className="title">User</h1>
-      {!!users &&
-        users.map((user) => (
+      <h1 className="title">Rick & Morty</h1>
+      {!!characters &&
+        characters.results.map((character) => (
           <h4
-            key={user.id}
-            onClick={() => router.push(`user/${slug(user.name)}-${user.id}`)}
+            key={character.id}
+            onClick={() =>
+              router.push(
+                `rickandmorty/${slug(character.name)}-${character.id}`
+              )
+            }
           >
-            {user.id} - {user.name}
+            {character.id} - {character.name}
           </h4>
         ))}
 
@@ -42,15 +46,15 @@ function User({ users }) {
   )
 }
 
-export default User
+export default Character
 
 export async function getStaticProps() {
-  const res = await fetch("http://localhost:3000/api/users")
-  const users = await res.json()
+  const res = await fetch("https://rickandmortyapi.com/api/character")
+  const characters = await res.json()
 
   return {
     props: {
-      users,
+      characters,
     },
   }
 }

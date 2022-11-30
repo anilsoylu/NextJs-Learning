@@ -1,6 +1,7 @@
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import Meta from "../../components/Meta"
+var slug = require("slug")
 
 function UserItem({ userData }) {
   const router = useRouter()
@@ -31,7 +32,7 @@ export default UserItem
 
 export const getStaticProps = async (context) => {
   const res = await fetch(
-    `https://jsonplaceholder.typicode.com/users/${context.params.id}`
+    `http://localhost:3000/api/users/${context.params.id}`
   )
   const userData = await res.json()
 
@@ -43,7 +44,7 @@ export const getStaticProps = async (context) => {
 }
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/users/`)
+  const res = await fetch(`http://localhost:3000/api/users`)
   const users = await res.json()
 
   const ids = users.map((user) => user.id)

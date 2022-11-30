@@ -58,6 +58,18 @@ function Header() {
           </li>
           <li>
             <Link
+              href="/rickandmorty"
+              className={
+                router.pathname == "/rickandmorty"
+                  ? "nav-link px-2 link-secondary"
+                  : "nav-link px-2 text-white"
+              }
+            >
+              Rick & Morty
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/contact"
               className={
                 router.pathname == "/contact"
