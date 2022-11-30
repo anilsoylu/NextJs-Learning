@@ -7,6 +7,8 @@ export default function Document() {
         <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
           rel="stylesheet"
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
         />
       </Head>
       <body>
