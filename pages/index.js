@@ -1,7 +1,9 @@
 import Head from "next/head"
+import { useRouter } from "next/router"
 import styles from "../styles/Home.module.css"
 
-export default function Home({ comments }) {
+export default function Home({ users }) {
+  const router = useRouter()
   const number = 3
   return (
     <div className={styles.container}>
@@ -12,13 +14,13 @@ export default function Home({ comments }) {
       </Head>
 
       <h1 className="title">Home</h1>
-      <h2>Comments List</h2>
+      <h2>User List</h2>
 
-      {!!comments &&
-        comments?.map((comment) => (
-          <div key={comment.id}>
-            {comment.id} - {comment.name}
-          </div>
+      {!!users &&
+        users.map((user) => (
+          <h4 key={user.id} onClick={() => router.push(`user/${user.id}`)}>
+            {user.id} - {user.name}
+          </h4>
         ))}
 
       <style jsx>
@@ -27,6 +29,12 @@ export default function Home({ comments }) {
             display: ${number > 2 ? "block" : "none"};
             color: yellow;
           }
+          h4 {
+            cursor: pointer;
+          }
+          h4:hover {
+            color: red;
+          }
         `}
       </style>
     </div>
@@ -34,12 +42,12 @@ export default function Home({ comments }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/comments")
-  const comments = await res.json()
+  const res = await fetch("https://jsonplaceholder.typicode.com/users")
+  const users = await res.json()
 
   return {
     props: {
-      comments,
+      users,
     },
   }
 }

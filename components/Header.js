@@ -44,6 +44,18 @@ function Header() {
               Product
             </Link>
           </li>
+          <li>
+            <Link
+              href="/user"
+              className={
+                router.pathname == "/user"
+                  ? "nav-link px-2 link-secondary"
+                  : "nav-link px-2 text-white"
+              }
+            >
+              User
+            </Link>
+          </li>
         </ul>
       </div>
     </div>
