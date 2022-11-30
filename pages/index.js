@@ -21,14 +21,6 @@ export default function Home({ users }) {
       </div>
 
       <h1 className="title">Home</h1>
-      <h2>User List</h2>
-
-      {!!users &&
-        users.map((user) => (
-          <h4 key={user.id} onClick={() => router.push(`user/${user.id}`)}>
-            {user.id} - {user.name}
-          </h4>
-        ))}
 
       <style jsx>
         {`
@@ -36,25 +28,8 @@ export default function Home({ users }) {
             display: ${number > 2 ? "block" : "none"};
             color: yellow;
           }
-          h4 {
-            cursor: pointer;
-          }
-          h4:hover {
-            color: red;
-          }
         `}
       </style>
     </div>
   )
-}
-
-export async function getStaticProps() {
-  const res = await fetch("http://localhost:3000/api/users")
-  const users = await res.json()
-
-  return {
-    props: {
-      users,
-    },
-  }
 }

@@ -1,7 +1,6 @@
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import Meta from "../../components/Meta"
-var slug = require("slug")
 
 function UserItem({ userData }) {
   return (
