@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import Meta from "../../components/Meta"
 
 function CharacterItem({ charData }) {
-  //const router = useRouter()
+  const router = useRouter()
 
   return (
     <div className="container">
@@ -17,6 +17,9 @@ function CharacterItem({ charData }) {
           alt={charData.name}
           width={300}
           height={300}
+          style={{
+            objectFit: "cover",
+          }}
         />
       </figure>
     </div>
@@ -26,7 +29,7 @@ function CharacterItem({ charData }) {
 export default CharacterItem
 
 export const getServerSideProps = async (context) => {
-  const contextId = context.query.slug.toString().split("-")[2]
+  const contextId = context.query.slug.toString().split("-").slice(-1)[0]
   const res = await fetch(
     `https://rickandmortyapi.com/api/character/${contextId}`
   )

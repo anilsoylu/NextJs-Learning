@@ -3,8 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["images.unsplash.com", "*.rickandmortyapi.com"],
-    unoptimized: true,
+    domains: ["*.rickandmortyapi.com"],
   },
 }
 
