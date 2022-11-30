@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 
 function UserItem({ userData }) {
   const router = useRouter()
+  console.log(router)
 
   return (
     <div className="container">
