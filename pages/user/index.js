@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { useRouter } from "next/router"
 import React from "react"
 import Meta from "../../components/Meta"
@@ -14,15 +15,17 @@ function User({ users }) {
         description="Burası kullanıcılar sayfasıdır.."
       />
       <h1 className="title">User</h1>
-      {!!users &&
-        users.map((user) => (
-          <h4
-            key={user.id}
-            onClick={() => router.push(`user/${slug(user.name)}-${user.id}`)}
-          >
-            {user.id} - {user.name}
-          </h4>
-        ))}
+
+      <ul>
+        {!!users &&
+          users.map((user) => (
+            <li key={user.id}>
+              <Link href={`/user/${user.id}`}>
+                {user.id} - {user.name}
+              </Link>
+            </li>
+          ))}
+      </ul>
 
       <style jsx>
         {`
@@ -44,13 +47,11 @@ function User({ users }) {
 
 export default User
 
-export async function getStaticProps() {
+export async function getServerSideProps(context) {
   const res = await fetch("http://localhost:3000/api/users")
   const users = await res.json()
 
   return {
-    props: {
-      users,
-    },
+    props: { users }, // will be passed to the page component as props
   }
 }
