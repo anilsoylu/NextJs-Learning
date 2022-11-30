@@ -20,7 +20,7 @@ function User({ users }) {
         {!!users &&
           users.map((user) => (
             <li key={user.id}>
-              <Link href={`/user/${user.id}`}>
+              <Link href={`/user/${slug(user.name)}-${user.id}`}>
                 {user.id} - {user.name}
               </Link>
             </li>
@@ -52,6 +52,6 @@ export async function getServerSideProps(context) {
   const users = await res.json()
 
   return {
-    props: { users }, // will be passed to the page component as props
+    props: { users },
   }
 }
